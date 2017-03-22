@@ -11,7 +11,19 @@
       active: string, // 选中样式 <br />
       content: string, // 插入内容目标元素 <br />
       pager: string // 插入分页目标元素 <br />
-  }, fn1, fn2) // fn1 和 fn2 使用方法请参见示例 <br />
+  }, function(result, num) { <br />
+        return html = result[num].map((item) => { <br />
+            return ( <br />
+                `element` 字符串模版 <br />
+            ) <br />
+        }) <br />
+    }, function(result) { <br />
+        return html = result.map((item) => { <br />
+            return ( <br />
+                `element` 字符串模版 <br />
+            ) <br />
+        }) <br />
+    })  // fn1 和 fn2 具体使用方法请参见示例 <br />
   
 ## 注意事项
 
