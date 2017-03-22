@@ -7,7 +7,7 @@
         }
 
         if (typeof(options.index) !== 'number' || typeof(options.limit) !== 'number' || typeof(options.perpage) !==
-            'number' || typeof(options.left) !== 'number' || typeof(options.content) !== 'string' || typeof(options.pager) !== 'string') {
+            'number' || typeof(options.left) !== 'number' || typeof(options.active) !== 'string' || typeof(options.content) !== 'string' || typeof(options.pager) !== 'string') {
             console.log('请输入正确参数')
             return
         }
@@ -39,6 +39,8 @@
         this.limit = options.limit; // 分页每组长度
         this.perpage = options.perpage; // 每页显示条目数量
         this.left = options.left; // 目标页左边数字长度
+        this.pager = options.pager;
+        this.active = options.active;
         this.fn1 = fn1;
         this.fn2 = fn2;
 
@@ -85,6 +87,12 @@
         var pager_array_dom = this.fn2.call(this, output_pager_array);
         pager_array_dom = pager_array_dom.join('');
         this.output_pager.content = pager_array_dom;
+
+        // 添加 active 样式
+        if (this.active) {
+            var index = output_pager_array.indexOf(this.index);
+            document.getElementById(this.pager).childNodes[index].className = this.active;
+        }
     }
 
     Pagination.prototype.el_array = function() {
@@ -124,13 +132,13 @@
 
         try {
             if (limit > max) {
-                throw('警告：limit 必须 小于页码数 max!请修改参数')
+                throw ('警告：limit 必须 小于页码数 max!请修改参数')
             }
             if (divide_left < 1) {
-                throw('警告：left至少为1！请修改参数')
+                throw ('警告：left至少为1！请修改参数')
             }
             if (limit - divide_left < 2) {
-                throw('警告：必须limit - left >= 2,请修改参数');
+                throw ('警告：必须limit - left >= 2,请修改参数');
             }
         } catch (err) {
             alert(err);
