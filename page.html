@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+    #page {
+        display: inline;
+    }
+    
+    #page li {
+        display: inline;
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #337ab7;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+    
+    #page li:hover {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+
+    #el{
+        height: 500px;
+    }
+    
+    #el li:hover{
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+
+    #page .active{
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="list-group" id="el"></ul>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <ul id="page"></ul>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script type="text/javascript" src="page.js"></script>
+    <script type="text/javascript">
+    var jsonStr = '[{"id":"01","open":false,"pId":"0","name":"A部门"},{"id":"02","open":false,"pId":"0","name":"A部门"},{"id":"03","open":false,"pId":"01","name":"A部门"},{"id":"04","open":false,"pId":"0","name":"A部门"},{"id":"05","open":false,"pId":"0","name":"A部门"}, {"id":"06","open":false,"pId":"0","name":"A部门"}, {"id":"07","open":false,"pId":"0","name":"A部门"}, {"id":"08","open":false,"pId":"0","name":"A部门"}, {"id":"09","open":false,"pId":"0","name":"A部门"}, {"id":"10","open":false,"pId":"0","name":"A部门"}, {"id":"11","open":false,"pId":"0","name":"A部门"}, {"id":"12","open":false,"pId":"0","name":"A部门"}, {"id":"13","open":false,"pId":"0","name":"A部门"}, {"id":"14","open":false,"pId":"0","name":"A部门"},{"id":"15","open":false,"pId":"0","name":"A部门"},{"id":"16","open":false,"pId":"0","name":"A部门"},{"id":"17","open":false,"pId":"01","name":"A部门"},{"id":"18","open":false,"pId":"0","name":"A部门"},{"id":"19","open":false,"pId":"0","name":"A部门"}, {"id":"20","open":false,"pId":"0","name":"A部门"}, {"id":"21","open":false,"pId":"0","name":"A部门"}, {"id":"22","open":false,"pId":"0","name":"A部门"}, {"id":"23","open":false,"pId":"0","name":"A部门"}, {"id":"24","open":false,"pId":"0","name":"A部门"}, {"id":"25","open":false,"pId":"0","name":"A部门"}, {"id":"26","open":false,"pId":"0","name":"A部门"}, {"id":"27","open":false,"pId":"0","name":"A部门"}, {"id":"28","open":false,"pId":"0","name":"A部门"},{"id":"29","open":false,"pId":"0","name":"A部门"},{"id":"30","open":false,"pId":"0","name":"A部门"},{"id":"31","open":false,"pId":"01","name":"A部门"},{"id":"32","open":false,"pId":"0","name":"A部门"},{"id":"33","open":false,"pId":"0","name":"A部门"}, {"id":"34","open":false,"pId":"0","name":"A部门"}, {"id":"35","open":false,"pId":"0","name":"A部门"}, {"id":"36","open":false,"pId":"0","name":"A部门"}, {"id":"37","open":false,"pId":"0","name":"A部门"}, {"id":"38","open":false,"pId":"0","name":"A部门"}, {"id":"39","open":false,"pId":"0","name":"A部门"}, {"id":"40","open":false,"pId":"0","name":"A部门"}, {"id":"41","open":false,"pId":"0","name":"A部门"}, {"id":"42","open":false,"pId":"0","name":"A部门"},{"id":"43","open":false,"pId":"0","name":"A部门"},{"id":"44","open":false,"pId":"0","name":"A部门"},{"id":"45","open":false,"pId":"01","name":"A部门"},{"id":"46","open":false,"pId":"0","name":"A部门"},{"id":"47","open":false,"pId":"0","name":"A部门"}, {"id":"48","open":false,"pId":"0","name":"A部门"}, {"id":"49","open":false,"pId":"0","name":"A部门"}, {"id":"50","open":false,"pId":"0","name":"A部门"}, {"id":"51","open":false,"pId":"0","name":"A部门"}, {"id":"52","open":false,"pId":"0","name":"A部门"}, {"id":"53","open":false,"pId":"0","name":"A部门"}, {"id":"54","open":false,"pId":"0","name":"A部门"}, {"id":"55","open":false,"pId":"0","name":"A部门"}, {"id":"56","open":false,"pId":"0","name":"A部门"}]';
+
+    var pagination = new Pagination({
+        dataSource: jsonStr,
+        index: 1, // 默认页码
+        limit: 5, // 每组分页长度
+        perpage: 5, // 每页显示数量
+        left: 2, // 选中页码左边页码数
+        active:'active', // 选中样式
+        content: 'el', // 插入内容目标元素
+        pager: 'page' // 插入分页目标元素
+    }, function(result, num) {
+        return html = result[num].map((item) => {
+            return (
+                `<li class="list-group-item">${item.id},${item.name},${item.open},${item.pId}</li>`
+            )
+        })
+    }, function(result) {
+        return html = result.map((item) => {
+            return (
+                `<li>${item}</li>`
+            )
+        })
+    })
+    pagination.init()
+    document.getElementById('page').addEventListener('click', function(e) {
+        if (e.target.nodeName == 'LI') {
+            var index = parseInt(e.target.outerText);
+            pagination.set_page(index)
+        }
+    })
+    </script>
+</body>
+
+</html>
