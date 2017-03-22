@@ -48,13 +48,13 @@
     <ul class="list-group" id="el"></ul>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li>
+            <li id="arrow_up">
                 <a href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <ul id="page"></ul>
-            <li>
+            <li id="arrow_down">
                 <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
@@ -69,7 +69,7 @@
         dataSource: jsonStr,
         index: 1, // 默认页码
         limit: 5, // 每组分页长度
-        perpage: 5, // 每页显示数量
+        perpage: 10, // 每页显示数量
         left: 2, // 选中页码左边页码数
         active:'active', // 选中样式
         content: 'el', // 插入内容目标元素
@@ -93,6 +93,14 @@
             var index = parseInt(e.target.outerText);
             pagination.set_page(index)
         }
+    })
+
+    document.getElementById('arrow_up').addEventListener(('click'),function(e){
+        pagination.arrow_left();
+    })
+
+    document.getElementById('arrow_down').addEventListener(('click'),function(e){
+        pagination.arrow_right();
     })
     </script>
 </body>

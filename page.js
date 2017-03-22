@@ -66,6 +66,31 @@
         this.set_pager();
     }
 
+    Pagination.prototype.arrow_left = function() {
+        var index = this.index;
+        if (index < 2) {
+            index = 2;
+        }
+        this.num = index - 2;
+        this.set_el();
+
+        this.index = index - 1;
+        this.set_pager();
+    }
+
+    Pagination.prototype.arrow_right = function() {
+        var index = this.index;
+        if (index > this.max - 1) {
+            index = this.max - 1;
+        }
+        this.num = index;
+        this.set_el();
+
+        this.index = index + 1;
+        this.set_pager();
+    }
+
+
     Pagination.prototype.set_el = function() {
 
         try {
