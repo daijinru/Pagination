@@ -33,6 +33,10 @@
             }
         })
 
+        if (options.active) {
+            this.active = options.active;
+        }
+
         // 传入的参数初始化
         this.index = options.index; // 目标页
         this.num = this.index - 1;
@@ -40,7 +44,6 @@
         this.perpage = options.perpage; // 每页显示条目数量
         this.left = options.left; // 目标页左边数字长度
         this.pager = options.pager;
-        this.active = options.active;
         this.fn1 = fn1;
         this.fn2 = fn2;
 
