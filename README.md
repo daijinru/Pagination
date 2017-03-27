@@ -12,13 +12,13 @@
       content: string, // 插入内容目标元素 <br />
       pager: string // 插入分页目标元素 <br />
   }, function(result, num) { <br />
-        return html = result[num].map((item) => { <br />
+        return html = result[num].map((item) => { // 固定写法 <br />
             return ( <br />
                 `element` 字符串模版 <br />
             ) <br />
         }) <br />
     }, function(result) { <br />
-        return html = result.map((item) => { <br />
+        return html = result.map((item) => { // 固定写法 <br />
             return ( <br />
                 `element` 字符串模版 <br />
             ) <br />
